@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Error</title>
+</head>
+<body>
+    <h1>CORS Error</h1>
+    <p>The "Get Joke direct" button will directly call the "https://joke-api-strict-cors.appspot.com/random_joke" API and so due to CROS this call will fail. But the "Get Joke via proxy" button will callthe own proxy written in the file index.js file and that proxy will call the jokes Api and as that will be a server call and the CROS policy is only in broeser so the call will be successful !!</p>
+    <button id="p_f" class="f">Get Joke via proxy</button>
+    <button id="d_f" class="f">Get Joke direct</button>
+    <h3 id="setup"></h3>
+    <p id="seperator" style="display: none;">!!!!--------!!!!</p>
+    <h4 id="punchline"></h4>
+    <script>
+        var proxy = 'http://127.0.0.1:3000/';
+        var p_f = document.getElementById('p_f');
+        var d_f = document.getElementById('d_f');
+        p_f.addEventListener('click', (e)=>{
+            fetch(proxy).then((res)=>{
+                res.json().then((joke)=>{
+                document.getElementById('setup').innerText = joke.setup;
+                document.getElementById('seperator').style.display = '';
+                document.getElementById('punchline').innerText = joke.punchline;
+            })
+            })
+        })
+        d_f.addEventListener('click', (e)=>{
+            fetch('https://joke-api-strict-cors.appspot.com/random_joke').then((res)=>{
+                res.json().then((joke)=>{
+                document.getElementById('setup').innerText = joke.setup;
+                document.getElementById('seperator').style.display = '';
+                document.getElementById('punchline').innerText = joke.punchline;
+            })
+            }).catch((err)=>{
+                document.getElementById('setup').innerText = err;
+                document.getElementById('seperator').style.display = '';
+                document.getElementById('punchline').innerText = "See the console for more information";
+            })
+        })
+    </script>
+</body>
+</html>
