@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>CORS Error</h1>
-    <p>The "Get Joke direct" button will directly call the "https://joke-api-strict-cors.appspot.com/random_joke" API and so due to CROS this call will fail. But the "Get Joke via proxy" button will callthe own proxy written in the file index.js file and that proxy will call the jokes Api and as that will be a server call and the CROS policy is only in broeser so the call will be successful !!</p>
+    <p>The "Get Joke direct" button will directly call the "https://joke-api-strict-cors.appspot.com/random_joke" API and so due to CORS this call will fail. But the "Get Joke via proxy" button will callthe own proxy written in the file index.js file and that proxy will call the jokes Api and as that will be a server call and the CORS policy is only in broeser so the call will be successful !!</p>
     <button id="p_f" class="f">Get Joke via proxy</button>
     <button id="d_f" class="f">Get Joke direct</button>
     <h3 id="setup"></h3>
